@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MDI_Stuff
@@ -15,6 +14,13 @@ namespace MDI_Stuff
         public Form1()
         {
             InitializeComponent();
+        }
+        
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var f1 = new FormChild();
+            f1.MdiParent = this;
+            f1.Show();
         }
     }
 }
