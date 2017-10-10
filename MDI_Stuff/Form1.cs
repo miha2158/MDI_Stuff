@@ -13,11 +13,12 @@ namespace MDI_Stuff
 {
     public partial class Form1: Form
     {
-        public FormChild lastActive;
+        public string name(Form f) => names[MdiChildren.ToList().IndexOf(f)];
+
         public string lastName
         {
-            get => names[MdiChildren.ToList().IndexOf(lastActive)];
-            set => names[MdiChildren.ToList().IndexOf(lastActive)] = value;
+            get => name(ActiveMdiChild);
+            set => names[MdiChildren.ToList().IndexOf(ActiveMdiChild)] = value;
         }
         public List<string> names;
 
@@ -39,60 +40,52 @@ namespace MDI_Stuff
         {
             var f1 = new FormChild();
             f1.MdiParent = this;
+
             names.Add(string.Empty);
             f1.Show();
         }
 
-        private void saveAs_Click(object sender, EventArgs e)
+        public void save_Item(FormChild child, bool choice)
         {
-            if (lastActive == null)
+            if (ActiveMdiChild == null)
                 return;
 
-            var bm = lastActive.Bm;
+            var bm = ((FormChild)ActiveMdiChild).Bm;
 
-            var sf = new SaveFileDialog
+            SaveFileDialog sf = new SaveFileDialog();
+
+            if (choice)
             {
-                DefaultExt = "bmp",
-                AddExtension = true,
-                DereferenceLinks = true,
-            };
+                sf.DefaultExt = "bmp";
+                sf.AddExtension = true;
+                sf.DereferenceLinks = true;
+                sf.SupportMultiDottedExtensions = true;
 
-            var res = sf.ShowDialog();
-            //if (res == DialogResult.Yes || res == DialogResult.OK)
-                using (var file = sf.OpenFile())
-                {
-                    lastName = sf.FileName;
-                    bm.Save(file, ImageFormat.Bmp);
-                }
+                sf.ShowDialog();
+
+                lastName = sf.FileName;
+            }
+
+            try
+            {
+                using (var fs = new FileStream(lastName, FileMode.Create))
+                    bm.Save(fs, ImageFormat.Bmp);
+            }
+            catch { }
+        }
+        private void saveAs_Click(object sender, EventArgs e)
+        {
+            save_Item((FormChild)ActiveMdiChild, true);
         }
         private void save_Click(object sender, EventArgs e)
         {
-            if (lastActive == null)
-                return;
-
-            var bm = lastActive.Bm;
-
-            using (var fs =
-                new FileStream(
-                    $@"C:\Users\user\Documents\Visual Studio 2017\Projects\MDI_Stuff\{
-                            MdiChildren.ToList().IndexOf(lastActive)
-                        }.bmp", FileMode.Create))
-                bm.Save(fs, ImageFormat.Bmp);
+            save_Item((FormChild)ActiveMdiChild, lastName == string.Empty);
         }
+
         private void saveAll_Click(object sender, EventArgs e)
         {
-            var temp = lastActive;
-
-            for (int i = 0; i < MdiChildren.Length; i++)
-            {
-                lastActive = (FormChild)MdiChildren[i];
-                if (lastName == string.Empty)
-                    saveAs_Click(sender, e);
-                else
-                    save_Click(sender, e);
-            }
-
-            lastActive = temp;
+            foreach (Form f in MdiChildren)
+                save_Item((FormChild)f, name(f) == string.Empty);
         }
     }
 }

@@ -18,79 +18,79 @@ namespace MDI_Stuff
         private void InitializeComponent()
         {
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
-            this.FileItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.NewItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.OpenItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveAsItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ExitItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAllItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.SaveAllItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuStrip
             // 
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.FileItem});
+            this.newItem,
+            this.openItem,
+            this.saveMenuItem,
+            this.exitItem});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Size = new System.Drawing.Size(800, 24);
             this.MenuStrip.TabIndex = 1;
             this.MenuStrip.Text = "menuStrip1";
             // 
-            // FileItem
+            // newItem
             // 
-            this.FileItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.NewItem,
-            this.OpenItem,
-            this.SaveItem,
-            this.SaveAsItem,
-            this.SaveAllItem,
-            this.ExitItem});
-            this.FileItem.Name = "FileItem";
-            this.FileItem.Size = new System.Drawing.Size(37, 20);
-            this.FileItem.Text = "File";
+            this.newItem.Name = "newItem";
+            this.newItem.Size = new System.Drawing.Size(43, 20);
+            this.newItem.Text = "New";
+            this.newItem.Click += new System.EventHandler(this.new_Click);
             // 
-            // newToolStripMenuItem
+            // openItem
             // 
-            this.NewItem.Name = "NewItem";
-            this.NewItem.Size = new System.Drawing.Size(152, 22);
-            this.NewItem.Text = "New";
-            this.NewItem.Click += new System.EventHandler(this.new_Click);
+            this.openItem.Name = "openItem";
+            this.openItem.Size = new System.Drawing.Size(48, 20);
+            this.openItem.Text = "Open";
             // 
-            // OpenItem
+            // saveMenuItem
             // 
-            this.OpenItem.Name = "OpenItem";
-            this.OpenItem.Size = new System.Drawing.Size(152, 22);
-            this.OpenItem.Text = "Open";
+            this.saveMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveItem,
+            this.saveAsItem,
+            this.saveAllItem});
+            this.saveMenuItem.Name = "saveMenuItem";
+            this.saveMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.saveMenuItem.Text = "Save";
             // 
-            // saveToolStripMenuItem
+            // saveItem
             // 
-            this.SaveItem.Name = "SaveItem";
-            this.SaveItem.Size = new System.Drawing.Size(152, 22);
-            this.SaveItem.Text = "Save";
-            this.SaveItem.Click += new System.EventHandler(this.save_Click);
+            this.saveItem.Name = "saveToolStripMenuItem";
+            this.saveItem.Size = new System.Drawing.Size(152, 22);
+            this.saveItem.Text = "Save";
+            this.saveItem.Click += new System.EventHandler(this.save_Click);
             // 
-            // SaveAsItem
+            // saveAsItem
             // 
-            this.SaveAsItem.Name = "SaveAsItem";
-            this.SaveAsItem.Size = new System.Drawing.Size(152, 22);
-            this.SaveAsItem.Text = "Save as";
-            this.SaveAsItem.Click += new System.EventHandler(this.saveAs_Click);
+            this.saveAsItem.Name = "saveAsItem";
+            this.saveAsItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsItem.Text = "Save as";
+            this.saveAsItem.Click += new System.EventHandler(this.saveAs_Click);
             // 
-            // ExitItem
+            // saveAllItem
             // 
-            this.ExitItem.Name = "ExitItem";
-            this.ExitItem.Size = new System.Drawing.Size(152, 22);
-            this.ExitItem.Text = "Exit";
+            this.saveAllItem.Name = "saveAllItem";
+            this.saveAllItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAllItem.Text = "Save all";
+            this.saveAllItem.Click += new System.EventHandler(this.saveAll_Click);
             // 
-            // saveAllToolStripMenuItem
+            // exitItem
             // 
-            this.SaveAllItem.Name = "SaveAllItem";
-            this.SaveAllItem.Size = new System.Drawing.Size(152, 22);
-            this.SaveAllItem.Text = "Save all";
-            this.SaveAllItem.Click += new System.EventHandler(this.saveAll_Click);
+            this.exitItem.Name = "exitItem";
+            this.exitItem.Size = new System.Drawing.Size(37, 20);
+            this.exitItem.Text = "Exit";
             // 
             // Form1
             // 
@@ -114,13 +114,13 @@ namespace MDI_Stuff
 
         private System.Windows.Forms.MenuStrip MenuStrip;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.ToolStripMenuItem FileItem;
-        private System.Windows.Forms.ToolStripMenuItem NewItem;
-        private System.Windows.Forms.ToolStripMenuItem OpenItem;
-        private System.Windows.Forms.ToolStripMenuItem SaveAsItem;
-        private System.Windows.Forms.ToolStripMenuItem ExitItem;
-        private System.Windows.Forms.ToolStripMenuItem SaveItem;
-        private System.Windows.Forms.ToolStripMenuItem SaveAllItem;
+        private System.Windows.Forms.ToolStripMenuItem openItem;
+        private System.Windows.Forms.ToolStripMenuItem saveMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAllItem;
+        private System.Windows.Forms.ToolStripMenuItem newItem;
+        private System.Windows.Forms.ToolStripMenuItem exitItem;
     }
 }
 
